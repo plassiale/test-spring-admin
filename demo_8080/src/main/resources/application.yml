@@ -3,13 +3,6 @@ debug: false
 server:
   port: 8080
 
-#
-#spring:
-#  security:
-#    user:
-#      name: user
-#      password: password
-
 # actuator
 management:
   endpoints:
@@ -19,21 +12,30 @@ management:
   endpoint:
     health:
         show-details: always
-       
+  
 spring:
+  application:
+    name: spring-boot-admin-client
+  security:
+    user:
+      name: client
+      password: client
   boot: 
     admin:
       client:
-        url: http://localhost:8070,http://localhost:8071 # 2 serveurs admin 
+        url: http://localhost:8070, http://localhost:8071 # 2 serveurs admin 
         register-once: false
         auto-registration: true
         auto-deregistration: true
-#        username: user
-#        password: password
+        #config pour se connecter au serveur
+        username: server
+        password: server
         instance:
-          service-base-url: http://localhost:8080 #url client
+          #prefer-ip: true
+          service-base-url: http://localhost:${server.port} #url client
           metadata:
-#            user.name: user
-#            user.password: password
+            # config pour que le serveur se connect au client
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
             tags : 
-              datacenter : d2
+              datacenter : d-${server.port}
