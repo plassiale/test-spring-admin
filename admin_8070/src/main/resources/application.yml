@@ -1,0 +1,21 @@
+server:
+  port: 8070
+
+# TODO : creuser enregistrement zookeeper
+# https://github.com/codecentric/spring-boot-admin/blob/master/spring-boot-admin-samples/spring-boot-admin-sample-zookeeper/src/main/resources/application.yml
+
+# Les clients s'enregistrent via spring-boot-admin-starter-client
+# sinon le serveur peut les découvrir 
+# https://codecentric.github.io/spring-boot-admin/2.2.1/#spring-cloud-discovery-static-config
+
+# TODO : ajouter le cleint sur ce serveur pour qu'il s'autoenregistre et s'enregistre sur les autres 
+
+# url proxy
+spring.boot.admin.ui.public-url: http://localhost:8081               
+
+# mode cluster avec hazelcast pour synchroniser plusieurs instances
+# TODO : utile si utilisation des notification ou pour d'autres cas ?
+#        les 2 instances peuvent être indépendantes, les clients s'enregistrent sur les 2
+# https://codecentric.github.io/spring-boot-admin/2.2.1/#clustering-support
+
+

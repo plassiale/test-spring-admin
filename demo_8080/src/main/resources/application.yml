@@ -1,0 +1,39 @@
+debug: false
+
+server:
+  port: 8080
+
+#
+#spring:
+#  security:
+#    user:
+#      name: user
+#      password: password
+
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+        show-details: always
+       
+spring:
+  boot: 
+    admin:
+      client:
+        url: http://localhost:8070,http://localhost:8071 # 2 serveurs admin 
+        register-once: false
+        auto-registration: true
+        auto-deregistration: true
+#        username: user
+#        password: password
+        instance:
+          service-base-url: http://localhost:8080 #url client
+          metadata:
+#            user.name: user
+#            user.password: password
+            tags : 
+              datacenter : d2
