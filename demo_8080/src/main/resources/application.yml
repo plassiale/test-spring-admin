@@ -3,15 +3,25 @@ debug: false
 server:
   port: 8080
 
+info:
+  info_yml: "info application"
+  
 # actuator
-management:
+# TODO SSL : https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/production-ready-features.html#production-ready-management-specific-ssl
+management: 
+#  info:
+#    git.mode: full
+# https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/production-ready-features.html#production-ready-metrics-spring-mvc
+#  metrics.web.server.request.autotime.enabled: true # sinon utiliser @Timed
   endpoints:
     web:
       exposure:
         include: "*"
   endpoint:
     health:
-        show-details: always
+        show-details: always #when-authorized 
+        show-components: always
+        #TODO : roles
   
 spring:
   application:
@@ -38,4 +48,4 @@ spring:
             user.name: ${spring.security.user.name}
             user.password: ${spring.security.user.password}
             tags : 
-              datacenter : d-${server.port}
+              datacenter : ${server.port}

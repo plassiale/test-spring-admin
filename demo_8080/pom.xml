@@ -38,6 +38,10 @@
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
 		</dependency>
+		<!-- <dependency>
+		    <groupId>org.jolokia</groupId>
+		    <artifactId>jolokia-core</artifactId>
+		</dependency> -->
 	</dependencies>
 
 	<build>
@@ -49,9 +53,20 @@
 	                <execution>
 	                    <goals>
 	                        <goal>build-info</goal>
+	                        <goal>repackage</goal>
 	                    </goals>
+	                    <configuration>
+			                <additionalProperties>
+			                    <java.version>${java.version}</java.version>
+			                </additionalProperties>
+	            		</configuration>
 	                </execution>
 	            </executions>
+	        </plugin>
+	        <plugin>
+	        	<!-- genere git.properties -->
+	            <groupId>pl.project13.maven</groupId>
+	            <artifactId>git-commit-id-plugin</artifactId>
 	        </plugin>
 		</plugins>
 	</build>

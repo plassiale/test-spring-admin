@@ -38,4 +38,4 @@ spring:
             user.name: ${spring.security.user.name}
             user.password: ${spring.security.user.password}
             tags : 
-              datacenter : d-${server.port}
+              datacenter : ${server.port}
